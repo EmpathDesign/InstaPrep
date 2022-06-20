@@ -7,7 +7,7 @@ using Xamarin.Forms;
 namespace InstaPrep.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class RecipeDetailViewModel : BaseViewModel
     {
         private string itemId;
         private string text;
@@ -45,7 +45,7 @@ namespace InstaPrep.ViewModels
             {
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Text = item.Text;
+                Text = item.Title;
                 Description = item.Description;
             }
             catch (Exception)

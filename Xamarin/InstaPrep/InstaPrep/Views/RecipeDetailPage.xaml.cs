@@ -4,12 +4,12 @@ using InstaPrep.ViewModels;
 
 namespace InstaPrep.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class RecipeDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public RecipeDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new RecipeDetailViewModel();
         }
     }
 }
