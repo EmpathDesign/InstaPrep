@@ -20,7 +20,7 @@ namespace InstaPrep.Services
                 Title = "Brazilian Salmon Stew  (Moqueca)",
                 Duration = "1-2 Hours",
                 Effort = "Easy",
-                Rating = "2",
+                Rating = 1,
                 Ingredients = new List<Ingredient>()
                 {
                     new Ingredient()
@@ -45,8 +45,8 @@ namespace InstaPrep.Services
                 ImageUrl = "https://www.simplyrecipes.com/thmb/Cq-nXMpurSH2lkL5olkG1tIBeTE=/648x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2016__07__zucchini-noodle-chicken-pesto-bowl-vertical-a-1600-51560a436ab14af087d11aad2f9d2e3e.jpg",
                 Title = "Zucchini Noodle Chicken Pesto Bowl",
                 Duration = "1 Hour",
-                Effort = "Hard",
-                Rating = "3"
+                Effort = "Easy",
+                Rating = 3
             },
             new Recipe()
             {
@@ -54,7 +54,7 @@ namespace InstaPrep.Services
                 Title = "Roasted Cauliflower and Mushroom Bolognese",
                 Duration = "1-2 Hours",
                 Effort = "Medium",
-                Rating = "2"
+                Rating = 2
             },
             new Recipe()
             {
@@ -62,7 +62,7 @@ namespace InstaPrep.Services
                 Title = "Homemade Apple Pie",
                 Duration = "3 Hours",
                 Effort = "Hard",
-                Rating = "2"
+                Rating = 2
             }
         };
         }

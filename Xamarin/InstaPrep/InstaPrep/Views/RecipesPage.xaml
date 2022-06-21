@@ -5,9 +5,17 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:InstaPrep.ViewModels"  
              xmlns:model="clr-namespace:InstaPrep.Models"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:convert="clr-namespace:InstaPrep.Converters"
              Background="#F8F6F9"
              x:Name="RecipesListPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convert:RatingIconConverter x:Key="ratingIconConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
@@ -53,6 +61,7 @@
                                FontAttributes="Bold"
                                HorizontalTextAlignment="Center"
                                 LineBreakMode="TailTruncation"
+                                VerticalTextAlignment="Center"
                                 MaxLines="2"
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
@@ -68,18 +77,17 @@
 
                                 </StackLayout>
                                 <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding Rating}"
-                                           HorizontalTextAlignment="Center"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
 
+                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>	
 
                                 </StackLayout>
                                 <StackLayout Grid.Column="2">
+                                   
+
                                     <Label Text="{Binding Effort}"
                                            HorizontalTextAlignment="End"
                             LineBreakMode="NoWrap"
+                            VerticalTextAlignment="Center"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
 
