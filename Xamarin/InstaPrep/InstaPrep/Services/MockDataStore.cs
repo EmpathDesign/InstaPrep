@@ -46,7 +46,7 @@ namespace InstaPrep.Services
                 Title = "Zucchini Noodle Chicken Pesto Bowl",
                 Duration = "1 Hour",
                 Effort = "Hard",
-                Rating = "2"
+                Rating = "3"
             },
             new Recipe()
             {

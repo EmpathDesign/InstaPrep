@@ -14,5 +14,10 @@ namespace InstaPrep.Models
         public string Effort { get; set; } = string.Empty;
 
         public List<Ingredient> Ingredients = new List<Ingredient>();
+
+        public Recipe()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }

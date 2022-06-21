@@ -4,7 +4,9 @@
              x:Class="InstaPrep.Views.RecipesPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:InstaPrep.ViewModels"  
-             xmlns:model="clr-namespace:InstaPrep.Models"  
+             xmlns:model="clr-namespace:InstaPrep.Models"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Background="#F8F6F9"
              x:Name="RecipesListPage">
 
     <ContentPage.ToolbarItems>
@@ -17,26 +19,87 @@
     <RefreshView x:DataType="local:RecipesViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
+                ItemsLayout="VerticalGrid, 2"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Recipe">
-                        <Label Text="{Binding Title}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
+                    <Grid Padding="10,10">
+
+                        <Frame HasShadow="False" Margin="0,60,0,0"
+                               xct:ShadowEffect.Color="Black"
+                               xct:ShadowEffect.Opacity=".2"
+                                xct:ShadowEffect.OffsetY="5"
+                                    xct:ShadowEffect.Radius="10">
+
+
+                        </Frame>
+
+
+                        <StackLayout Spacing="20" Margin="0,0,0,0" Padding="10" x:DataType="model:Recipe">
+                            <Frame CornerRadius="50"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                            HeightRequest="100"
+                            WidthRequest="100"
+                            Padding="0"
+                            IsClippedToBounds="True">
+                                <Image Source="{Binding ImageUrl}"
+                                   HorizontalOptions="Center"
+                                       Aspect="Fill"
+           VerticalOptions="Center">
+                                </Image>
+                            </Frame>
+                            <Label Text="{Binding Title}"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="2"
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Grid ColumnDefinitions="*,*,*">
+
+                                <StackLayout>
+                                    <Label Text="{Binding Duration}" 
+                            LineBreakMode="WordWrap"
+                                           MaxLines="2"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+
+
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Rating}"
+                                           HorizontalTextAlignment="Center"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
+
+
+                                </StackLayout>
+                                <StackLayout Grid.Column="2">
+                                    <Label Text="{Binding Effort}"
+                                           HorizontalTextAlignment="End"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+
+
+                                </StackLayout>
+
+
+                            </Grid>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
