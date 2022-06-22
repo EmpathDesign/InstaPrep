@@ -15,8 +15,12 @@
     <None Remove="Xamarin.CommunityToolkit" />
     <None Remove="Xamarin.FFImageLoading.Svg.Forms" />
     <None Remove="Converters\" />
+    <None Remove="Behaviors\" />
+    <None Remove="Effects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
 </Project>

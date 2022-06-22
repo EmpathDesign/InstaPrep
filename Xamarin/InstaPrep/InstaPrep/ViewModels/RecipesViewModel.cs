@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
 
 using Xamarin.Forms;
 
@@ -12,14 +13,24 @@ namespace InstaPrep.ViewModels
 {
     public class RecipesViewModel : BaseViewModel
     {
+
+        public ObservableCollection<Recipe> AllRecipes { get; }
+
         private Recipe _selectedItem;
 
-        public ObservableCollection<Recipe> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<Recipe> ItemTapped { get; }
-        private ObservableCollection<RecipeCategory> categories;
+        public Command<string> SearchTextChanged { get; }
 
+        private ObservableCollection<Recipe> filterRecipes;
+        public ObservableCollection<Recipe> FilteredRecipes
+        {
+            get => filterRecipes;
+            set => SetProperty(ref filterRecipes, value);
+        }
+
+        private ObservableCollection<RecipeCategory> categories;
         public ObservableCollection<RecipeCategory> Categories
         {
             get => categories;
@@ -29,14 +40,29 @@ namespace InstaPrep.ViewModels
         public RecipesViewModel()
         {
             Title = "Recipe";
-            Items = new ObservableCollection<Recipe>();
+            AllRecipes = new ObservableCollection<Recipe>();
+            FilteredRecipes = new ObservableCollection<Recipe>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Recipe>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
 
+            SearchTextChanged = new Command<string>(async (searchTerm) => await SearchRecipes(searchTerm));
+
             LoadCategories();
+        }
+
+        private async Task SearchRecipes(object searchTerm)
+        {
+            string term = searchTerm as string;
+
+            if (!string.IsNullOrEmpty(term))
+                FilteredRecipes = new ObservableCollection<Recipe>(FilteredRecipes.Where(item => item.Title.ToLower().Contains(term.ToLower())));
+            else
+            {
+                await ExecuteLoadItemsCommand();
+            }
         }
 
         void LoadCategories()
@@ -72,11 +98,13 @@ namespace InstaPrep.ViewModels
 
             try
             {
-                Items.Clear();
+                AllRecipes.Clear();
+                FilteredRecipes.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    AllRecipes.Add(item);
+                    FilteredRecipes.Add(item);
                 }
             }
             catch (Exception ex)

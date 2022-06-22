@@ -8,6 +8,7 @@
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:convert="clr-namespace:InstaPrep.Converters"
+             xmlns:behaviors="clr-namespace:InstaPrep.Behaviors"
              Background="#F8F6F9"
              x:Name="RecipesListPage">
 
@@ -25,7 +26,12 @@
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <Grid RowDefinitions="auto, auto, auto" Padding="10,10" x:DataType="local:RecipesViewModel">
-        <Entry HeightRequest="50" Placeholder="Find recipe"></Entry>
+        <SearchBar x:Name="searchEntry" HeightRequest="50" Placeholder="Find recipe">
+            <SearchBar.Behaviors>
+                <behaviors:SearchTextChangedBehavior  Command="{Binding SearchTextChanged}" CommandParameter="{Binding Text, Source={x:Reference searchEntry}}" />
+            </SearchBar.Behaviors>
+
+        </SearchBar>
         <CollectionView ItemsLayout="HorizontalList" HeightRequest="50" ItemsSource="{Binding Categories}" Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -37,7 +43,7 @@
         </CollectionView>
     <RefreshView Grid.Row="2" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding FilteredRecipes}"
                 ItemsLayout="VerticalGrid, 2"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>

@@ -152,4 +152,7 @@
       <Name>InstaPrep</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Effects\" />
+  </ItemGroup>
 </Project>
