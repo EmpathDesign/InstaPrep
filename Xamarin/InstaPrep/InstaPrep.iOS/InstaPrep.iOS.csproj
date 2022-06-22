@@ -125,6 +125,7 @@
     <BundleResource Include="Resources\1Star.svg" />
     <BundleResource Include="Resources\2Star.svg" />
     <BundleResource Include="Resources\3Star.svg" />
+    <BundleResource Include="Resources\previous-white.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
