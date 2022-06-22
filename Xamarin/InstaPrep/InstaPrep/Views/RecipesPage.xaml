@@ -24,7 +24,18 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:RecipesViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <Grid RowDefinitions="auto, auto, auto" Padding="10,10" x:DataType="local:RecipesViewModel">
+        <Entry HeightRequest="50" Placeholder="Find recipe"></Entry>
+        <CollectionView ItemsLayout="HorizontalList" HeightRequest="50" ItemsSource="{Binding Categories}" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" Margin="10" x:DataType="model:RecipeCategory">
+                        <Button Text="{Binding Name}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    <RefreshView Grid.Row="2" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 ItemsLayout="VerticalGrid, 2"
@@ -65,37 +76,37 @@
                                 MaxLines="2"
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                            <Grid ColumnDefinitions="*,*,*">
+                                <Grid ColumnDefinitions="*,*,*">
 
-                                <StackLayout>
-                                    <Label Text="{Binding Duration}" 
-                            LineBreakMode="WordWrap"
-                                           MaxLines="2"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                                    <StackLayout>
+                                        <Label Text="{Binding Duration}" 
+                                LineBreakMode="WordWrap"
+                                               MaxLines="2"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
 
 
-                                </StackLayout>
-                                <StackLayout Grid.Column="1">
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1">
 
-                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>	
+                                        <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>	
 
-                                </StackLayout>
-                                <StackLayout Grid.Column="2">
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2">
                                    
 
-                                    <Label Text="{Binding Effort}"
-                                           HorizontalTextAlignment="End"
-                            LineBreakMode="NoWrap"
-                            VerticalTextAlignment="Center"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                                        <Label Text="{Binding Effort}"
+                                               HorizontalTextAlignment="End"
+                                LineBreakMode="NoWrap"
+                                VerticalTextAlignment="Center"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
 
 
-                                </StackLayout>
+                                    </StackLayout>
 
 
-                            </Grid>
+                                </Grid>
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
@@ -112,5 +123,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </RefreshView>
+    </Grid>
 </ContentPage>
 

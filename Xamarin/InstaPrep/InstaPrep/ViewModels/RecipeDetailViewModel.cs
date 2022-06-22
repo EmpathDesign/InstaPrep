@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using InstaPrep.Models;
@@ -6,53 +8,51 @@ using Xamarin.Forms;
 
 namespace InstaPrep.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
+    [QueryProperty(nameof(RecipeId), nameof(RecipeId))]
     public class RecipeDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
+        private string recipeId;
+        private Recipe selectedRecipe;
 
-        public string Text
+        public Command BackCommand { get; }
+
+        public Recipe SelectedRecipe
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => selectedRecipe;
+            set => SetProperty(ref selectedRecipe, value);
         }
 
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-
-        public string ItemId
+        public string RecipeId
         {
             get
             {
-                return itemId;
+                return recipeId;
             }
             set
             {
-                itemId = value;
-                LoadItemId(value);
+                recipeId = value;
+                LoadRecipeId(value);
             }
-        }        
+        }
 
-        public async void LoadItemId(string itemId)
+        public RecipeDetailViewModel()
+        {
+            BackCommand = new Command(() => Shell.Current.SendBackButtonPressed());
+        }
+
+        public async void LoadRecipeId(string itemId)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Title;
-                Description = item.Description;
+                var recipe = await DataStore.GetItemAsync(itemId);
+                SelectedRecipe = recipe;
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
         }
+
     }
 }
 

@@ -74,6 +74,7 @@
     <None Include="Resources\1Star.svg" />
     <None Include="Resources\2Star.svg" />
     <None Include="Resources\3Star.svg" />
+    <None Include="Resources\previous-white.svg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />

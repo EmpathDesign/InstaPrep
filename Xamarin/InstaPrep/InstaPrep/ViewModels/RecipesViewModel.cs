@@ -18,6 +18,13 @@ namespace InstaPrep.ViewModels
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<Recipe> ItemTapped { get; }
+        private ObservableCollection<RecipeCategory> categories;
+
+        public ObservableCollection<RecipeCategory> Categories
+        {
+            get => categories;
+            set => SetProperty(ref categories, value);
+        }
 
         public RecipesViewModel()
         {
@@ -28,6 +35,35 @@ namespace InstaPrep.ViewModels
             ItemTapped = new Command<Recipe>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+
+            LoadCategories();
+        }
+
+        void LoadCategories()
+        {
+            Categories = new ObservableCollection<RecipeCategory>()
+            {
+                new RecipeCategory()
+                {
+                    Name = "All"
+                },
+                new RecipeCategory()
+                {
+                    Name = "Dinner"
+                },
+                new RecipeCategory()
+                {
+                    Name = "Lunch"
+                },
+                new RecipeCategory()
+                {
+                    Name = "Breakfast"
+                },
+                new RecipeCategory()
+                {
+                    Name = "Dessert"
+                }
+            };
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -80,7 +116,7 @@ namespace InstaPrep.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(RecipeDetailPage)}?{nameof(RecipeDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(RecipeDetailPage)}?{nameof(RecipeDetailViewModel.RecipeId)}={item.Id}");
         }
     }
 }
