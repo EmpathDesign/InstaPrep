@@ -12,6 +12,7 @@ namespace InstaPrep.Models
         public int Rating { get; set; } = 1;
         public string Duration { get; set; } = string.Empty;
         public string Effort { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
 
         public List<Ingredient> Ingredients = new List<Ingredient>();
 

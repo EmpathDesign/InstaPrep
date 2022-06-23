@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstaPrep.Views.RecipeDetailPage"
-             xmlns:model="clr-namespace:InstaPrep.Models"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             Title="{Binding Title}"
-             Shell.TabBarIsVisible="False"
-             xmlns:convert="clr-namespace:InstaPrep.Converters"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:local="clr-namespace:InstaPrep.ViewModels"
-             Shell.NavBarIsVisible="False"
-             x:DataType="local:RecipeDetailViewModel">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="InstaPrep.Views.RecipeDetailPage"
+    xmlns:model="clr-namespace:InstaPrep.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" Title="{Binding Title}" Shell.TabBarIsVisible="False"
+    xmlns:convert="clr-namespace:InstaPrep.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:local="clr-namespace:InstaPrep.ViewModels" Shell.NavBarIsVisible="False" x:DataType="local:RecipeDetailViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,66 +19,34 @@
 
             <Grid RowDefinitions="4*,6*" x:DataType="model:Recipe">
 
+                <!-- Recipe Image -->
                 <Image Aspect="AspectFill" Source="{Binding ImageUrl}" />
 
-                <Frame HasShadow="False" Margin="0,-50,0,0" CornerRadius="50" Grid.Row="1"
-                   xct:ShadowEffect.Color="Black"
-                    xct:ShadowEffect.Opacity=".3"
-                    xct:ShadowEffect.OffsetX="0"
-                    xct:ShadowEffect.OffsetY="-20"
-                    xct:ShadowEffect.Radius="10"
-                    Padding="30">
+                <Frame HasShadow="False" Margin="0,-50,0,0" CornerRadius="50" Grid.Row="1" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity=".3" xct:ShadowEffect.OffsetX="0" xct:ShadowEffect.OffsetY="-20" xct:ShadowEffect.Radius="10" Padding="30">
                     <StackLayout>
 
-                        <Label Text="{Binding Title}"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Start"
-                                    LineBreakMode="TailTruncation"
-                                    VerticalTextAlignment="Start"
-                                    MaxLines="2"
-                                    Style="{DynamicResource ListItemTextStyle}" 
-                                    FontSize="Large" />
+                        <!-- Title -->
+                        <Label Text="{Binding Title}" FontAttributes="Bold" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation" VerticalTextAlignment="Start" MaxLines="2" Style="{DynamicResource ListItemTextStyle}" FontSize="Large" />
 
-                        <Label Text="{Binding Title}"
-                                   HorizontalTextAlignment="Start"
-                                    LineBreakMode="TailTruncation"
-                                    VerticalTextAlignment="Start"
-                                    MaxLines="2"
-                                    Style="{DynamicResource ListItemTextStyle}" 
-                                    FontSize="Small" />
+                        <!-- Category -->
+                        <Label Text="{Binding Category}" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation" VerticalTextAlignment="Start" MaxLines="2" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" />
 
                         <Grid ColumnDefinitions="*,*,*" Margin="0,20">
 
+                            <!-- Duration -->
                             <StackLayout>
-                                <Label Text="{Binding Duration}" 
-                                LineBreakMode="WordWrap"
-                                               MaxLines="2"
-                                               VerticalOptions="Fill"
-                                VerticalTextAlignment="Center"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-
-
+                                <Label Text="{Binding Duration}" LineBreakMode="WordWrap" MaxLines="2" VerticalOptions="Fill" VerticalTextAlignment="Center" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                             </StackLayout>
+
+                            <!-- Rating -->
                             <StackLayout Grid.Column="1">
-
                                 <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>
-
                             </StackLayout>
+
+                            <!-- Effort -->
                             <StackLayout Grid.Column="2">
-
-
-                                <Label Text="{Binding Effort}"
-                                               HorizontalTextAlignment="End"
-                                LineBreakMode="NoWrap"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-
-
+                                <Label Text="{Binding Effort}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                             </StackLayout>
-
 
                         </Grid>
                     </StackLayout>
@@ -94,18 +57,12 @@
 
         </Grid>
 
-        <StackLayout xct:ShadowEffect.Color="Black"
-                               xct:ShadowEffect.Opacity=".5"
-                                xct:ShadowEffect.OffsetY="5"
-                                    xct:ShadowEffect.Radius="10" IsClippedToBounds="False" HorizontalOptions="Start" Margin="30,50" WidthRequest="40" HeightRequest="40">
+        <StackLayout xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity=".5" xct:ShadowEffect.OffsetY="5" xct:ShadowEffect.Radius="10" IsClippedToBounds="False" HorizontalOptions="Start" Margin="30,50" WidthRequest="40" HeightRequest="40">
 
             <ffimageloadingsvg:SvgCachedImage Opacity=".9" Source="previous-white.svg"/>
 
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer 
-                NumberOfTapsRequired="1"
-                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipeDetailViewModel}}, Path=BackCommand}"		
-                CommandParameter="{Binding .}">
+                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipeDetailViewModel}}, Path=BackCommand}" CommandParameter="{Binding .}">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
         </StackLayout>

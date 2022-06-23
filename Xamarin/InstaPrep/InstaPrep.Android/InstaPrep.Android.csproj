@@ -66,6 +66,9 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DeviceServices\Share.cs" />
+    <Compile Include="Renderers\AmazingProgressBarRenderer.cs" />
+    <Compile Include="Effects\SearchBarEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -75,6 +78,7 @@
     <None Include="Resources\2Star.svg" />
     <None Include="Resources\3Star.svg" />
     <None Include="Resources\previous-white.svg" />
+    <None Include="Resources\adam_resume.pdf" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />
@@ -94,12 +98,21 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\icon_about.png" />
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\adam.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InstaPrep\InstaPrep.csproj">
       <Project>{0ADE37F5-4822-49A5-8EB5-A00B2EAA14EE}</Project>
       <Name>InstaPrep</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DeviceServices\" />
+    <Folder Include="Effects\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
