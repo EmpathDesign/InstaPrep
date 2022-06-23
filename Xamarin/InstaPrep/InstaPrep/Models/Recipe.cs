@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace InstaPrep.Models
 {
@@ -14,7 +15,7 @@ namespace InstaPrep.Models
         public string Effort { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
 
-        public List<Ingredient> Ingredients = new List<Ingredient>();
+        public ObservableCollection<Ingredient> Ingredients = new ObservableCollection<Ingredient>();
 
         public Recipe()
         {

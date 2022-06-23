@@ -22,6 +22,13 @@ namespace InstaPrep.ViewModels
             set => SetProperty(ref selectedRecipe, value);
         }
 
+        ObservableCollection<Ingredient> recipeIngredients;
+        public ObservableCollection<Ingredient> RecipeIngredients
+        {
+            get => recipeIngredients;
+            set => SetProperty(ref recipeIngredients, value);
+        }
+
         public string RecipeId
         {
             get
@@ -46,6 +53,7 @@ namespace InstaPrep.ViewModels
             {
                 var recipe = await DataStore.GetItemAsync(itemId);
                 SelectedRecipe = recipe;
+                RecipeIngredients = recipe.Ingredients;
             }
             catch (Exception)
             {
