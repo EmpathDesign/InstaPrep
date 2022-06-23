@@ -50,7 +50,7 @@
 
                 <!-- .Net Framework -->
                 <Label Text=".Net Framework" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".95" />
+                <renderers:AmazingProgressBar ProgressColor="Green" Progress=".95" />
 
                 <!-- Xamarin -->
                 <Label Text="Xamarin" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
@@ -61,40 +61,40 @@
                     <StackLayout Grid.Column="0" Spacing="10">
                         <!-- C# -->
                         <Label Text="C#" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                        <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".9" />
+                        <renderers:AmazingProgressBar ProgressColor="DarkRed" Progress=".9" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Spacing="10">
                         <!-- XAML -->
                         <Label Text="XAML" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                        <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".8" />
+                        <renderers:AmazingProgressBar ProgressColor="Black" Progress=".8" />
                     </StackLayout>
 
                 </Grid>
 
                 <!-- Blazor -->
                 <Label Text="Blazor" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".6" />
+                <renderers:AmazingProgressBar ProgressColor="DarkOrange" Progress=".6" />
 
                 <Grid ColumnDefinitions="*,*">
 
                     <StackLayout Grid.Column="0" Spacing="10">
                         <!-- SQL -->
                         <Label Text="SQL" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                        <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".65" />
+                        <renderers:AmazingProgressBar ProgressColor="Brown" Progress=".65" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Spacing="10">
                         <!-- GraphQL -->
                         <Label Text="GraphQL" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                        <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".55" />
+                        <renderers:AmazingProgressBar ProgressColor="Purple" Progress=".55" />
                     </StackLayout>
 
                 </Grid>
 
                 <!-- Docker -->
                 <Label Text="Docker" FontAttributes="Bold" FontSize="16" Padding="0,0,0,0"/>
-                <renderers:AmazingProgressBar ProgressColor="Blue" Progress=".4" />
+                <renderers:AmazingProgressBar ProgressColor="Olive" Progress=".4" />
             </StackLayout>
         </ScrollView>
     </Grid>
