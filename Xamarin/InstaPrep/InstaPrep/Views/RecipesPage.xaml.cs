@@ -18,7 +18,7 @@ namespace InstaPrep.Views
         RecipesViewModel _viewModel;
 
         public RecipesPage()
-        {
+        {   
             InitializeComponent();
 
             BindingContext = _viewModel = new RecipesViewModel();

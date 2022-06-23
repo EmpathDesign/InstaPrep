@@ -17,10 +17,14 @@
     <None Remove="Converters\" />
     <None Remove="Behaviors\" />
     <None Remove="Effects\" />
+    <None Remove="Renderers\" />
+    <None Remove="DeviceServices\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Effects\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="DeviceServices\" />
   </ItemGroup>
 </Project>

@@ -69,6 +69,7 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Effects\SearchBarEffect.cs" />
+    <Compile Include="Renderers\AmazingProgressBarRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -127,6 +128,7 @@
     <BundleResource Include="Resources\2Star.svg" />
     <BundleResource Include="Resources\3Star.svg" />
     <BundleResource Include="Resources\previous-white.svg" />
+    <BundleResource Include="Resources\adam.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -155,5 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Effects\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>
