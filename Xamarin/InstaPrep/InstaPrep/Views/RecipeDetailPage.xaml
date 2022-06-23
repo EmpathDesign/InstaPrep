@@ -5,6 +5,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" Title="{Binding Title}" Shell.TabBarIsVisible="False"
     xmlns:convert="clr-namespace:InstaPrep.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    x:Name="recipeDetailPage"
     xmlns:local="clr-namespace:InstaPrep.ViewModels" Shell.NavBarIsVisible="False" x:DataType="local:RecipeDetailViewModel">
 
     <ContentPage.Resources>
@@ -49,6 +50,33 @@
                             </StackLayout>
 
                         </Grid>
+
+                        <!-- Ingredient List -->
+                        <CollectionView Margin="0" VerticalOptions="FillAndExpand" ItemsSource="{Binding BindingContext.RecipeIngredients, Source={x:Reference recipeDetailPage}}" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="0,10" x:DataType="model:Ingredient">
+                       
+                                       <StackLayout Margin="0" Orientation="Horizontal">
+                                            <CheckBox VerticalOptions="Center" />
+                                            <Label VerticalOptions="Center" FontSize="16">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span FontAttributes="Bold" Text="{Binding Title}"/>
+                                                        <Span Text=" - "/>
+                                                        <Span Text="{Binding Measure}"/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        </StackLayout>
+                                       
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </StackLayout>
 
                 </Frame>

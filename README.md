@@ -1,20 +1,16 @@
 # InstaPrep
 
-This Xamarin app has been created as a demo app as part of a skills assessment for a potential project.
+This Xamarin app has been created by Adam Lepley as part of a skills assessment for a potential project.
 
 # Screen Shots
 
-Recipe Page             |  Recipe Detail Page
-:-------------------------:|:-------------------------:
-![](/img/recipe_page.png)  |  ![](/img/recipe_details.png)
+Recipe Page             |  Recipe Detail Page|  About Page|  Resume Viewing / Sharing
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<img src="img/recipe_page.png" width="186" height="404" />  |  <img src="img/recipe_details.png" width="186" height="404" />|  <img src="img/about.png" width="186" height="404" />|  <img src="img/resume.png" width="186" height="404" />
 
-
-About Page             |  Resume Viewing / Sharing
-:-------------------------:|:-------------------------:
-![](/img/about.png)  |  ![](/img/resume.png)
 
 # Link to Demo
-https://www.screencast.com/t/bLnyfNENnwq1
+https://www.screencast.com/t/j7fSqNOoXc
 
 # Overview
 The purpose of this exercise is to view how a candidate approaches designing and implementing a simple, but non-trivial Xamarin Forms application. This sample is designed to preview how a candidate tackles design as well to provide a working technical display. If the candidate requires an application idea, we recommend an application such as a file browser or an RSS feed, however, other ideas are warmly welcomed.

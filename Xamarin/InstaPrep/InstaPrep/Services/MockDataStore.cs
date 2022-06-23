@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using InstaPrep.Models;
@@ -12,6 +13,45 @@ namespace InstaPrep.Services
 
         public MockDataStore()
         {
+            var defaultIngredients = new ObservableCollection<Ingredient>()
+            {
+                new Ingredient()
+                {
+                    Title = "Garlic",
+                    Measure = "4 cloves"
+                },
+                new Ingredient()
+                {
+                    Title = "Lime Juice",
+                    Measure = "2 tbsp"
+                },
+                new Ingredient()
+                {
+                    Title = "Salt",
+                    Measure = "3/4 tsp"
+                },
+                new Ingredient()
+                {
+                    Title = "Onions",
+                    Measure = "2 medium"
+                },
+                new Ingredient()
+                {
+                    Title = "Tomatoes",
+                    Measure = "3 medium"
+                },
+                new Ingredient()
+                {
+                    Title = "Coconut Milk",
+                    Measure = "14 oz"
+                },
+                new Ingredient()
+                {
+                    Title = "Green Bell Pepper",
+                    Measure = "1 large"
+                }
+            };
+
             items = new List<Recipe>()
         {
             new Recipe()
@@ -22,24 +62,7 @@ namespace InstaPrep.Services
                 Effort = "Easy",
                 Category = "Dinner",
                 Rating = 1,
-                Ingredients = new List<Ingredient>()
-                {
-                    new Ingredient()
-                    {
-                        Title = "Garlic",
-                        Measure = "4 cloves"
-                    },
-                    new Ingredient()
-                    {
-                        Title = "Lime Juice",
-                        Measure = "2 tbsp"
-                    },
-                    new Ingredient()
-                    {
-                        Title = "Salt",
-                        Measure = "3/4 tsp"
-                    }
-                }
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -48,7 +71,8 @@ namespace InstaPrep.Services
                 Duration = "1 Hour",
                 Effort = "Easy",
                 Category = "Dinner",
-                Rating = 3
+                Rating = 3,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -57,7 +81,8 @@ namespace InstaPrep.Services
                 Duration = "1-2 Hours",
                 Effort = "Medium",
                 Category = "Dinner",
-                Rating = 2
+                Rating = 2,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -66,7 +91,8 @@ namespace InstaPrep.Services
                 Duration = "35 Mins",
                 Effort = "Easy",
                 Category = "Breakfast",
-                Rating = 2
+                Rating = 2,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -75,7 +101,8 @@ namespace InstaPrep.Services
                 Duration = "3 Hours",
                 Effort = "Hard",
                 Category = "Dessert",
-                Rating = 1
+                Rating = 1,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -84,7 +111,8 @@ namespace InstaPrep.Services
                 Duration = "30 mins",
                 Effort = "Easy",
                 Category = "Lunch",
-                Rating = 3
+                Rating = 3,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -93,7 +121,8 @@ namespace InstaPrep.Services
                 Duration = "20 Mins",
                 Effort = "Easy",
                 Category = "Lunch",
-                Rating = 1
+                Rating = 1,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -102,7 +131,8 @@ namespace InstaPrep.Services
                 Duration = "3 Hours",
                 Effort = "Hard",
                 Category = "Dessert",
-                Rating = 3
+                Rating = 3,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -111,7 +141,8 @@ namespace InstaPrep.Services
                 Duration = "35 Mins",
                 Effort = "Easy",
                 Category = "Breakfast",
-                Rating = 2
+                Rating = 2,
+                Ingredients = defaultIngredients
             },
             new Recipe()
             {
@@ -120,7 +151,8 @@ namespace InstaPrep.Services
                 Duration = "3 Hours",
                 Effort = "Hard",
                 Category = "Breakfast",
-                Rating = 3
+                Rating = 3,
+                Ingredients = defaultIngredients
             }
         };
         }
