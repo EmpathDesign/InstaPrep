@@ -20,6 +20,7 @@ namespace InstaPrep.Services
                 Title = "Brazilian Salmon Stew  (Moqueca)",
                 Duration = "1-2 Hours",
                 Effort = "Easy",
+                Category = "Dinner",
                 Rating = 1,
                 Ingredients = new List<Ingredient>()
                 {
@@ -46,6 +47,7 @@ namespace InstaPrep.Services
                 Title = "Zucchini Noodle Chicken Pesto Bowl",
                 Duration = "1 Hour",
                 Effort = "Easy",
+                Category = "Dinner",
                 Rating = 3
             },
             new Recipe()
@@ -54,6 +56,7 @@ namespace InstaPrep.Services
                 Title = "Roasted Cauliflower and Mushroom Bolognese",
                 Duration = "1-2 Hours",
                 Effort = "Medium",
+                Category = "Breakfast",
                 Rating = 2
             },
             new Recipe()
@@ -62,7 +65,8 @@ namespace InstaPrep.Services
                 Title = "Homemade Apple Pie",
                 Duration = "3 Hours",
                 Effort = "Hard",
-                Rating = 2
+                Category = "Lunch",
+                Rating = 1
             }
         };
         }

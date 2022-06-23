@@ -13,7 +13,6 @@ namespace InstaPrep.ViewModels
 {
     public class RecipesViewModel : BaseViewModel
     {
-
         public ObservableCollection<Recipe> AllRecipes { get; }
 
         private Recipe _selectedItem;
@@ -46,9 +45,15 @@ namespace InstaPrep.ViewModels
             set => SetProperty(ref selectedCategory, value);
         }
 
+        private string currentSearchTerm { get; set; } = string.Empty;
+
+
         public RecipesViewModel()
         {
-            Title = "Recipe";
+            Title = "My Recipes";
+
+            LoadCategories();
+
             AllRecipes = new ObservableCollection<Recipe>();
             FilteredRecipes = new ObservableCollection<Recipe>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -59,27 +64,38 @@ namespace InstaPrep.ViewModels
 
             SearchTextChanged = new Command<string>(async (searchTerm) => await SearchRecipes(searchTerm));
 
-            CategoryChanged = new Command<string>((categoryChanged) => FilterByCategory(categoryChanged));
-
-            LoadCategories();
+            CategoryChanged = new Command<string>(async (categoryChanged) => await FilterByCategory(categoryChanged));
         }
 
-        private void FilterByCategory(string categoryChanged)
+        private async Task ApplyFilters()
+        {
+            ObservableCollection<Recipe> newFilteredList = new ObservableCollection<Recipe>(AllRecipes);
+
+            if (!string.IsNullOrEmpty(currentSearchTerm))
+            {
+                newFilteredList = new ObservableCollection<Recipe>(
+                    newFilteredList.Where(item => item.Title.ToLower().Contains(currentSearchTerm.ToLower())));
+            }
+
+            if (SelectedCategory.Name.ToLower() != "all")
+            {
+                newFilteredList = new ObservableCollection<Recipe>(
+                    newFilteredList.Where(item => item.Category.ToLower() == SelectedCategory.Name.ToLower()));
+            }
+
+            FilteredRecipes = newFilteredList;
+        }
+
+        private async Task FilterByCategory(string categoryChanged)
         {
             SelectedCategory = categories.FirstOrDefault(a => a.Id == categoryChanged);
-
+            await ApplyFilters();
         }
 
         private async Task SearchRecipes(object searchTerm)
         {
-            string term = searchTerm as string;
-
-            if (!string.IsNullOrEmpty(term))
-                FilteredRecipes = new ObservableCollection<Recipe>(FilteredRecipes.Where(item => item.Title.ToLower().Contains(term.ToLower())));
-            else
-            {
-                await ExecuteLoadItemsCommand();
-            }
+            currentSearchTerm = searchTerm as string;
+            await ApplyFilters();
         }
 
         void LoadCategories()
@@ -107,6 +123,8 @@ namespace InstaPrep.ViewModels
                     Name = "Dessert"
                 }
             };
+
+            SelectedCategory = Categories.First();
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -116,13 +134,12 @@ namespace InstaPrep.ViewModels
             try
             {
                 AllRecipes.Clear();
-                FilteredRecipes.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     AllRecipes.Add(item);
-                    FilteredRecipes.Add(item);
                 }
+                FilteredRecipes = AllRecipes;
             }
             catch (Exception ex)
             {
