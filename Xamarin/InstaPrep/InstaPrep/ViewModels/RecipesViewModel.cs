@@ -23,6 +23,8 @@ namespace InstaPrep.ViewModels
         public Command<Recipe> ItemTapped { get; }
         public Command<string> SearchTextChanged { get; }
 
+        public Command<string> CategoryChanged { get; }
+
         private ObservableCollection<Recipe> filterRecipes;
         public ObservableCollection<Recipe> FilteredRecipes
         {
@@ -35,6 +37,13 @@ namespace InstaPrep.ViewModels
         {
             get => categories;
             set => SetProperty(ref categories, value);
+        }
+
+        private RecipeCategory selectedCategory;
+        public RecipeCategory SelectedCategory
+        {
+            get => selectedCategory;
+            set => SetProperty(ref selectedCategory, value);
         }
 
         public RecipesViewModel()
@@ -50,7 +59,15 @@ namespace InstaPrep.ViewModels
 
             SearchTextChanged = new Command<string>(async (searchTerm) => await SearchRecipes(searchTerm));
 
+            CategoryChanged = new Command<string>((categoryChanged) => FilterByCategory(categoryChanged));
+
             LoadCategories();
+        }
+
+        private void FilterByCategory(string categoryChanged)
+        {
+            SelectedCategory = categories.FirstOrDefault(a => a.Id == categoryChanged);
+
         }
 
         private async Task SearchRecipes(object searchTerm)

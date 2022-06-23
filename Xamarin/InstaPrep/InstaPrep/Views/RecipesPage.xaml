@@ -9,126 +9,175 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:convert="clr-namespace:InstaPrep.Converters"
              xmlns:behaviors="clr-namespace:InstaPrep.Behaviors"
+             xmlns:effects="clr-namespace:InstaPrep.Effects"
              Background="#F8F6F9"
              x:Name="RecipesListPage">
 
+    <!-- Converters -->
     <ContentPage.Resources>
         <ResourceDictionary>
             <convert:RatingIconConverter x:Key="ratingIconConverter" />
         </ResourceDictionary>
+
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
     </ContentPage.Resources>
 
+    <!-- Toolbar -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-    <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
+
     <Grid RowDefinitions="auto, auto, auto" Padding="10,10" x:DataType="local:RecipesViewModel">
-        <SearchBar x:Name="searchEntry" HeightRequest="50" Placeholder="Find recipe">
+
+        <!-- Search Bar -->
+        <SearchBar x:Name="searchEntry"
+                   HeightRequest="50"
+                   Placeholder="Find recipe">
+
             <SearchBar.Behaviors>
-                <behaviors:SearchTextChangedBehavior  Command="{Binding SearchTextChanged}" CommandParameter="{Binding Text, Source={x:Reference searchEntry}}" />
+                <behaviors:SearchTextChangedBehavior
+                    Command="{Binding SearchTextChanged}"
+                    CommandParameter="{Binding Text, Source={x:Reference searchEntry}}" />
             </SearchBar.Behaviors>
 
+            <SearchBar.Effects>
+                <effects:SearchBarEffect
+                    ShadowRadius="10"
+                    SearchBackgroundColor="White"
+                    ShadowColor="Black"
+                    ShadowDistanceX="0"
+                    ShadowDistanceY="0"
+                    ShadowFocusOpacity=".5"
+                    ShadowUnfocusOpacity=".2" />
+            </SearchBar.Effects>
+
         </SearchBar>
-        <CollectionView ItemsLayout="HorizontalList" HeightRequest="50" ItemsSource="{Binding Categories}" Grid.Row="1">
+
+        <!-- Categories -->
+        <CollectionView SelectionMode="None" ItemsLayout="HorizontalList" HeightRequest="50" ItemsSource="{Binding Categories}" Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10" Margin="10" x:DataType="model:RecipeCategory">
-                        <Button Text="{Binding Name}" />
+                        <Button Text="{Binding Name}">
+                            <Button.Behaviors>
+                                <behaviors:SelectableButtonBehavorBehavior
+                                    Command="{Binding BindingContext.CategoryChanged, Source={x:Reference RecipesListPage}}"
+                                    SelectedIdentifier="{Binding BindingContext.SelectedCategory.Id, Source={x:Reference RecipesListPage}, Mode=TwoWay}"
+                                    CurrentIdentifier="{Binding Id}"
+                                 />
+
+                            </Button.Behaviors>
+
+
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    <RefreshView Grid.Row="2" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding FilteredRecipes}"
-                ItemsLayout="VerticalGrid, 2"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10,10">
 
-                        <Frame HasShadow="False" Margin="0,60,0,0"
-                               xct:ShadowEffect.Color="Black"
-                               xct:ShadowEffect.Opacity=".2"
-                                xct:ShadowEffect.OffsetY="5"
-                                    xct:ShadowEffect.Radius="10">
+        <!-- Recipes List -->
+        <RefreshView Grid.Row="2" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                    ItemsSource="{Binding FilteredRecipes}"
+                    ItemsLayout="VerticalGrid, 2"
+                    SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10,10">
+
+                            <Frame HasShadow="False" Margin="0,60,0,0"
+                                   xct:ShadowEffect.Color="Black"
+                                   xct:ShadowEffect.Opacity=".2"
+                                    xct:ShadowEffect.OffsetY="5"
+                                        xct:ShadowEffect.Radius="10">
 
 
-                        </Frame>
-
-
-                        <StackLayout Spacing="20" Margin="0,0,0,0" Padding="10" x:DataType="model:Recipe">
-                            <Frame CornerRadius="50"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                            HeightRequest="100"
-                            WidthRequest="100"
-                            Padding="0"
-                            IsClippedToBounds="True">
-                                <Image Source="{Binding ImageUrl}"
-                                   HorizontalOptions="Center"
-                                       Aspect="Fill"
-           VerticalOptions="Center">
-                                </Image>
                             </Frame>
-                            <Label Text="{Binding Title}"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center"
-                                LineBreakMode="TailTruncation"
-                                VerticalTextAlignment="Center"
-                                MaxLines="2"
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                                <Grid ColumnDefinitions="*,*,*">
-
-                                    <StackLayout>
-                                        <Label Text="{Binding Duration}" 
-                                LineBreakMode="WordWrap"
-                                               MaxLines="2"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
 
 
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="1">
+                            <StackLayout Spacing="20" Margin="0,0,0,0" Padding="10" x:DataType="model:Recipe">
+                                <Frame CornerRadius="50"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                HeightRequest="100"
+                                WidthRequest="100"
+                                Padding="0"
+                                IsClippedToBounds="True">
+                                    <Image Source="{Binding ImageUrl}"
+                                       HorizontalOptions="Center"
+                                           Aspect="Fill"
+               VerticalOptions="Center">
+                                    </Image>
+                                </Frame>
+                                <Label Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"
+                                    VerticalTextAlignment="Center"
+                                    MaxLines="2"
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" />
+                                    <Grid ColumnDefinitions="*,*,*">
 
-                                        <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>	
+                                        <StackLayout>
+                                            <Label Text="{Binding Duration}" 
+                                    LineBreakMode="WordWrap"
+                                                   MaxLines="2"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
 
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="2">
+
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1">
+
+                                            <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="{Binding Rating, Converter={StaticResource ratingIconConverter}}"/>	
+
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2">
                                    
 
-                                        <Label Text="{Binding Effort}"
-                                               HorizontalTextAlignment="End"
-                                LineBreakMode="NoWrap"
-                                VerticalTextAlignment="Center"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
+                                            <Label Text="{Binding Effort}"
+                                                   HorizontalTextAlignment="End"
+                                    LineBreakMode="NoWrap"
+                                    VerticalTextAlignment="Center"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
 
 
-                                    </StackLayout>
+                                        </StackLayout>
 
 
-                                </Grid>
+                                    </Grid>
 
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                </TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecipesViewModel}}, Path=ItemTapped}"		
+                                    CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
 
 
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </Grid>
 </ContentPage>
 
