@@ -139,7 +139,8 @@ namespace InstaPrep.ViewModels
                 {
                     AllRecipes.Add(item);
                 }
-                FilteredRecipes = AllRecipes;
+
+                await ApplyFilters();
             }
             catch (Exception ex)
             {

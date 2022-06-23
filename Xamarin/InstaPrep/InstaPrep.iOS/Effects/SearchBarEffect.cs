@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportEffect(typeof(SearchBarEffect), nameof(SearchBarEffect))]
 namespace InstaPrep.iOS
 {
-	public class SearchBarEffect : PlatformEffect
+    public class SearchBarEffect : PlatformEffect
     {
         UIColor backgroundColor;
 
@@ -28,7 +28,8 @@ namespace InstaPrep.iOS
                     if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0))
                         NativeSearchBar.SearchTextField.BackgroundColor = effect.SearchBackgroundColor.ToUIColor();
 
-                    NativeSearchBar.SearchBarStyle = UISearchBarStyle.Prominent;
+                    NativeSearchBar.ShowsCancelButton = false;
+                    NativeSearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
                     NativeSearchBar.Layer.ShadowColor = effect.ShadowColor.ToCGColor();
                     NativeSearchBar.Layer.ShadowRadius = effect.ShadowRadius;
                     NativeSearchBar.Layer.ShadowOffset = new CGSize(effect.ShadowDistanceX, effect.ShadowDistanceY);
@@ -52,6 +53,11 @@ namespace InstaPrep.iOS
 
             try
             {
+                if (args.PropertyName == "Text")
+                {
+                    NativeSearchBar.ShowsCancelButton = false;
+                }
+
                 if (args.PropertyName == "IsFocused")
                 {
                     var effect = (InstaPrep.Effects.SearchBarEffect)Element.Effects.FirstOrDefault(e => e is InstaPrep.Effects.SearchBarEffect);
@@ -66,7 +72,7 @@ namespace InstaPrep.iOS
                             NativeSearchBar.Layer.ShadowOpacity = effect.ShadowUnfocusOpacity;
                         }
                     }
-               
+
                 }
             }
             catch (Exception ex)

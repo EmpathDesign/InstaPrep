@@ -56,6 +56,15 @@ namespace InstaPrep.Services
                 Title = "Roasted Cauliflower and Mushroom Bolognese",
                 Duration = "1-2 Hours",
                 Effort = "Medium",
+                Category = "Dinner",
+                Rating = 2
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/rEdXZcMbkXMjKRnjWOG4-el-vdM=/736x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__11__indian-pudding-horiz-b-1500-6869491988a74d25a32a639c91a21b8d.jpg",
+                Title = "Biscuits and Gravy",
+                Duration = "35 Mins",
+                Effort = "Easy",
                 Category = "Breakfast",
                 Rating = 2
             },
@@ -65,8 +74,53 @@ namespace InstaPrep.Services
                 Title = "Homemade Apple Pie",
                 Duration = "3 Hours",
                 Effort = "Hard",
+                Category = "Dessert",
+                Rating = 1
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/BAqLjRxK033r3pGPnwALHJ80_CY=/648x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__05__Skillet-Chicken-Enchiladas-LEAD-1-3d326763d3124f85aaa4f8e2c31e0b82.jpg",
+                Title = "Chicken Skillet Enchiladas",
+                Duration = "30 mins",
+                Effort = "Easy",
+                Category = "Lunch",
+                Rating = 3
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/3VuNE13QbPX2dDsoMcp_4qg6OBg=/648x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Grilled-Carrot-Dogs-LEAD-03-db0d312473e640aabdb547483bce7a57.jpg",
+                Title = "Grilled Carrot Dogs",
+                Duration = "20 Mins",
+                Effort = "Easy",
                 Category = "Lunch",
                 Rating = 1
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/rEdXZcMbkXMjKRnjWOG4-el-vdM=/736x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__11__indian-pudding-horiz-b-1500-6869491988a74d25a32a639c91a21b8d.jpg",
+                Title = "Indian Pudding",
+                Duration = "3 Hours",
+                Effort = "Hard",
+                Category = "Dessert",
+                Rating = 3
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/DFSfnV2aoG9TpytLRp8JTd5TBBM=/648x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Biscuits-and-Gravy-LEAD-06-bfe0bb039e0d4fbdb7e54631520bd0b3.jpg",
+                Title = "Biscuits and Gravy",
+                Duration = "35 Mins",
+                Effort = "Easy",
+                Category = "Breakfast",
+                Rating = 2
+            },
+            new Recipe()
+            {
+                ImageUrl = "https://www.simplyrecipes.com/thmb/bNcU9U1FIwiOX9udpMzvry-EKu0=/648x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2015__03__spinach-artichoke-quiche-vertical-600-4314be8d4e534c15a9f817d96822e31f.jpg",
+                Title = "Spinach and Artichoke Quiche",
+                Duration = "3 Hours",
+                Effort = "Hard",
+                Category = "Breakfast",
+                Rating = 3
             }
         };
         }

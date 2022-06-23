@@ -13,14 +13,18 @@ namespace InstaPrep.ViewModels
             Title = "About";
             OpenWebCommand = new Command(async () =>
             {
-                IShare shareDependency = DependencyService.Get<IShare>();
                 await Browser.OpenAsync("https://adamlepley.io/assets/pdf/adam_resume.pdf");
+            });
 
+            SharePDFCommand = new Command(async () =>
+            {
+                IShare shareDependency = DependencyService.Get<IShare>();
 
-                //await shareDependency.Show("Adam Lepley Resume.pdf", "adam_resume.pdf");
+                await shareDependency.Show("Adam Lepley", "Resume", "adam_resume.pdf");
             });
         }
 
         public ICommand OpenWebCommand { get; }
+        public ICommand SharePDFCommand { get; }
     }
 }
