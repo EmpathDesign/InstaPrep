@@ -2,6 +2,14 @@
 
 This Xamarin app has been created by Adam Lepley as part of a skills assessment for a potential project.
 
+IOS support was the inital focus given the time constrains, so Android support is still very much in progress :)
+
+## Known Issue
+- SVGs not loading on Android
+- Styling of the search bar on Android (need to implement platform  effect)
+- App crashes when opening about page, likely custom renderer work is needed
+
+
 # Screen Shots
 
 Recipe Page             |  Recipe Detail Page|  About Page|  Resume Viewing / Sharing
