@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 
 namespace InstaPrep.Droid
 {
@@ -18,7 +19,8 @@ namespace InstaPrep.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            CachedImageRenderer.Init(enableFastRenderer: true);
+            CachedImageRenderer.Init(enableFastRenderer: false);
+            var ignore = typeof(SvgCachedImage);
 
             LoadApplication(new App());
         }

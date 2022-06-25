@@ -124,10 +124,6 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="Resources\1Star.svg" />
-    <BundleResource Include="Resources\2Star.svg" />
-    <BundleResource Include="Resources\3Star.svg" />
-    <BundleResource Include="Resources\previous-white.svg" />
     <BundleResource Include="Resources\adam.png" />
     <BundleResource Include="Resources\adam_resume.pdf" />
   </ItemGroup>
