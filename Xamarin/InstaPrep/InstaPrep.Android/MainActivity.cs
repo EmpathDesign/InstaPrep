@@ -18,7 +18,7 @@ namespace InstaPrep.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            CachedImageRenderer.Init();
+            CachedImageRenderer.Init(enableFastRenderer: true);
 
             LoadApplication(new App());
         }
