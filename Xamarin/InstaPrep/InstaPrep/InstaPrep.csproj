@@ -19,6 +19,11 @@
     <None Remove="Effects\" />
     <None Remove="Renderers\" />
     <None Remove="DeviceServices\" />
+    <None Remove="SVG\" />
+    <None Remove="SVG\previous_white.svg" />
+    <None Remove="SVG\star_1.svg" />
+    <None Remove="SVG\star_2.svg" />
+    <None Remove="SVG\star_3.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
@@ -26,5 +31,24 @@
     <Folder Include="Effects\" />
     <Folder Include="Renderers\" />
     <Folder Include="DeviceServices\" />
+    <Folder Include="SVG\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SVG\previous_white.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SVG\star_1.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SVG\star_2.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SVG\star_3.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

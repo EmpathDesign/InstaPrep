@@ -14,11 +14,11 @@ namespace InstaPrep.Converters
                 switch (value)
                 {
                     case 1:
-                        return SvgImageSource.FromFile("1Star.svg");
+                        return SvgImageSource.FromResource("InstaPrep.SVG.star_1.svg");
                     case 2:
-                        return SvgImageSource.FromFile("2Star.svg");
+                        return SvgImageSource.FromResource("InstaPrep.SVG.star_2.svg");
                     case 3:
-                        return SvgImageSource.FromFile("3Star.svg");
+                        return SvgImageSource.FromResource("InstaPrep.SVG.star_3.svg");
                     default:
                         throw new Exception($"RatingIconConverter: Rating out of range");
                 }
